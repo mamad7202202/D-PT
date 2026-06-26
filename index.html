@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0e27" />
+  <meta name="description" content="D-PT — تست شخصیتی اژدها؛ تحلیل علمی شخصیت بر پایه Big Five و سبک‌های شناختی." />
+  <title>D-PT — تست شخصیتی اژدها</title>
+
+  <!-- Fonts: Vazirmatn + Estedad with fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@latest/dist/Estedad-FD.css" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Animated background layers (liquid glass ambiance) -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Top navigation -->
+  <header class="topbar glass" role="banner">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28">
+          <defs>
+            <linearGradient id="dgrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7c5cff"/>
+              <stop offset="1" stop-color="#36c5f0"/>
+            </linearGradient>
+          </defs>
+          <path d="M16 2c4 3 6 4 10 4-2 4-2 6-1 10-3-1-5 0-7 3-1-3-3-4-6-4 2-3 2-6 1-9 3 0 5-3 3-8z"
+                fill="url(#dgrad)"/>
+        </svg>
+      </div>
+      <span class="brand-name">D-PT</span>
+    </div>
+
+    <button id="themeToggle" class="theme-toggle glass-btn" aria-label="تغییر تم" title="تغییر تم">
+      <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 17a5 5 0 100-10 5 5 0 000 10zm0-13a1 1 0 011 1v1a1 1 0 11-2 0V5a1 1 0 011-1zm0 14a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5 11a1 1 0 010 2H4a1 1 0 110-2h1zm15 0a1 1 0 010 2h-1a1 1 0 110-2h1zM6.34 5.34l.7.7A1 1 0 015.63 7.46l-.7-.7a1 1 0 011.41-1.42zm11.32 11.32l.7.7a1 1 0 01-1.41 1.41l-.7-.7a1 1 0 011.41-1.41zM5.63 16.54l.7-.7a1 1 0 011.42 1.41l-.7.7a1 1 0 01-1.42-1.41zM16.95 5.34a1 1 0 011.41 1.42l-.7.7a1 1 0 11-1.41-1.41l.7-.71z"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </header>
+
+  <main id="app" role="main">
+
+    <!-- ============ LANDING ============ -->
+    <section id="screen-landing" class="screen active">
+      <div class="hero">
+        <div class="hero-badge glass">نسخه ۲۰۲۶ · تحلیل شناختی</div>
+        <h1 class="hero-title">تست شخصیتی که شاید بیشتر از خودت تو را بشناسد</h1>
+        <p class="hero-sub">پاسخ‌های صادقانه بده؛ نتیجه هم علمی خواهد بود، هم احتمالاً کمی خجالت‌آور!</p>
+        <div class="hero-actions">
+          <button id="startBtn" class="btn btn-primary">شروع تست</button>
+          <button id="resumeBtn" class="btn btn-ghost" hidden>ادامهٔ تست قبلی</button>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-item glass"><span class="meta-num" id="qCount">۵۰</span><span class="meta-label">پرسش هوشمند</span></div>
+          <div class="meta-item glass"><span class="meta-num">۱۴</span><span class="meta-label">بُعد شخصیتی</span></div>
+          <div class="meta-item glass"><span class="meta-num">~۸</span><span class="meta-label">دقیقه</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUIZ ============ -->
+    <section id="screen-quiz" class="screen">
+      <div class="quiz-wrap glass-panel">
+        <div class="quiz-head">
+          <div class="progress-info">
+            <span id="qIndex">۱</span><span class="sep">/</span><span id="qTotal">۵۰</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="progressBar" class="progress-fill"></div>
+          </div>
+        </div>
+
+        <div id="questionArea" class="question-area" aria-live="polite"></div>
+
+        <div class="quiz-nav">
+          <button id="prevBtn" class="btn btn-ghost">قبلی</button>
+          <span class="hint">کلید ۱ تا ۵ یا فلش‌ها · Enter برای بعدی</span>
+          <button id="nextBtn" class="btn btn-primary" disabled>بعدی</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LOADING ============ -->
+    <section id="screen-loading" class="screen">
+      <div class="loading-wrap">
+        <div class="loader-ring"><span></span><span></span><span></span></div>
+        <h2 id="loadingText">در حال تحلیل الگوهای رفتاری…</h2>
+      </div>
+    </section>
+
+    <!-- ============ RESULTS ============ -->
+    <section id="screen-results" class="screen">
+      <div id="resultsRoot"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>D-PT · ساخته‌شده برای کنجکاوها</span>
+  </footer>
+
+  <!-- Scripts (modular, no build tools) -->
+  <script src="js/questions.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/analysis.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
